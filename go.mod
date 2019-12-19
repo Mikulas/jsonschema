@@ -1,4 +1,4 @@
-module github.com/megaease/jsonschema
+module github.com/Mikulas/jsonschema
 
 go 1.12
 
