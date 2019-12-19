@@ -132,3 +132,41 @@ func TestSchemaGeneration(t *testing.T) {
 		})
 	}
 }
+
+func TestConditionals(t *testing.T) {
+	schema := Type{
+		Type: "object",
+		If: &Type{
+			Properties: map[string]*Type{
+				"country": {
+					Const: "United States of America",
+				},
+			},
+		},
+		Then: &Type{
+			Properties: map[string]*Type{
+				"postal_code": {
+					Pattern: "[0-9]{5}(-[0-9]{4})?",
+				},
+			},
+		},
+		Else: &Type{
+			Properties: map[string]*Type{
+				"postal_code": {
+					Pattern: "[A-Z][0-9][A-Z] [0-9][A-Z][0-9]",
+				},
+			},
+		},
+	}
+
+	f, err := ioutil.ReadFile("fixtures/conditionals.json")
+	require.NoError(t, err)
+
+	expectedSchema := &Schema{}
+	err = json.Unmarshal(f, expectedSchema)
+	require.NoError(t, err)
+
+	expectedJSON, _ := json.MarshalIndent(expectedSchema, "", "  ")
+	actualJSON, _ := json.MarshalIndent(schema, "", "  ")
+	require.Equal(t, string(expectedJSON), string(actualJSON))
+}

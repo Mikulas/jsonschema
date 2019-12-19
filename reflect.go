@@ -61,6 +61,7 @@ type Type struct {
 	Dependencies         map[string]*Type `json:"dependencies,omitempty"`         // section 5.19
 	Enum                 []interface{}    `json:"enum,omitempty"`                 // section 5.20
 	Type                 string           `json:"type,omitempty"`                 // section 5.21
+	Const                string           `json:"const,omitempty"`
 	AllOf                []*Type          `json:"allOf,omitempty"`                // section 5.22
 	AnyOf                []*Type          `json:"anyOf,omitempty"`                // section 5.23
 	OneOf                []*Type          `json:"oneOf,omitempty"`                // section 5.24
@@ -75,6 +76,11 @@ type Type struct {
 	// RFC draft-wright-json-schema-hyperschema-00, section 4
 	Media          *Type  `json:"media,omitempty"`          // section 4.3
 	BinaryEncoding string `json:"binaryEncoding,omitempty"` // section 4.3
+
+	// REF draft-handrews-json-schema-validation-01, section 6.6
+	If *Type `json:"if,omitempty"` // section 6.6.1
+	Then *Type `json:"if,omitempty"` // section 6.6.2
+	Else *Type `json:"if,omitempty"` // section 6.6.3
 }
 
 // Reflect reflects to Schema from a value using the default Reflector
