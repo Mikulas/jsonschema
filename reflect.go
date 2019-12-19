@@ -79,8 +79,8 @@ type Type struct {
 
 	// REF draft-handrews-json-schema-validation-01, section 6.6
 	If *Type `json:"if,omitempty"` // section 6.6.1
-	Then *Type `json:"if,omitempty"` // section 6.6.2
-	Else *Type `json:"if,omitempty"` // section 6.6.3
+	Then *Type `json:"then,omitempty"` // section 6.6.2
+	Else *Type `json:"else,omitempty"` // section 6.6.3
 }
 
 // Reflect reflects to Schema from a value using the default Reflector
