@@ -38,6 +38,8 @@ type Type struct {
 	// RFC draft-wright-json-schema-00
 	Version string `json:"$schema,omitempty"` // section 6.1
 	Ref     string `json:"$ref,omitempty"`    // section 7
+	// https://json-schema.org/draft/2019-09/json-schema-core.html
+	Id string `json:"$id,omitempty"`          // section 8.2.2
 	// RFC draft-wright-json-schema-validation-00, section 5
 	MultipleOf           int              `json:"multipleOf,omitempty"`           // section 5.1
 	Maximum              int              `json:"maximum,omitempty"`              // section 5.2
